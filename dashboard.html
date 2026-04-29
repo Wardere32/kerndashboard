@@ -3,127 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Kern CCD VR EEO Faculty Development Program Dashboard</title>
-    <style>
-        body {  
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-        .card {  
-            margin: 20px;
-        }
-        .timeline {  
-            position: relative;
-            margin: 20px 0;
-        }
-        .timeline::before {  
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 3px;
-            background: #007bff;
-            top: 0;
-            bottom: 0;
-            z-index: 1;
-        }
-        .timeline-event {  
-            position: relative;
-            margin: 10px 0;
-            padding: 10px 20px;
-            border: 1px solid #dee2e6;
-            background: #ffffff;
-            border-radius: 5px;
-            width: 45%;
-            left: 25%;
-        }
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center mt-4">Kern CCD VR EEO Faculty Development Program Dashboard</h1>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Participants</h5>
-                        <p class="card-text">150</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Budget Utilization</h5>
-                        <p class="card-text">$100,000</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Completion Rate</h5>
-                        <p class="card-text">85%</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="mt-4">Timeline</h2>
-        <div class="timeline">
-            <div class="timeline-event">
-                <h6>2026-01-15:</h6>
-                <p>Kick-off Meeting Held</p>
-            </div>
-            <div class="timeline-event">
-                <h6>2026-02-10:</h6>
-                <p>Funding Secured</p>
-            </div>
-            <div class="timeline-event">
-                <h6>2026-03-05:</h6>
-                <p>First Workshop Conducted</p>
-            </div>
-        </div>
-
-        <h2 class="mt-4">Budget Allocations</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Workshop Materials</td>
-                    <td>$20,000</td>
-                </tr>
-                <tr>
-                    <td>Marketing</td>
-                    <td>$10,000</td>
-                </tr>
-                <tr>
-                    <td>Instructor Fees</td>
-                    <td>$30,000</td>
-                </tr>
-                <tr>
-                    <td>Technology</td>
-                    <td>$40,000</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2 class="mt-4">Participating Colleges</h2>
-        <ul>
-            <li>College A</li>
-            <li>College B</li>
-            <li>College C</li>
+    <div class="container mt-5">
+        <h1>Interactive Dashboard for Kern CCD VR EEO Faculty Development Program</h1>
+        <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="charts-tab" data-toggle="tab" href="#charts" role="tab" aria-controls="charts" aria-selected="true">Charts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="metrics-tab" data-toggle="tab" href="#metrics" role="tab" aria-controls="metrics" aria-selected="false">Real-time Metrics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="modals-tab" data-toggle="tab" href="#modals" role="tab" aria-controls="modals" aria-selected="false">Modals</a>
+            </li>
         </ul>
+        <div class="tab-content" id="dashboardTabsContent">
+            <div class="tab-pane fade show active" id="charts" role="tabpanel" aria-labelledby="charts-tab">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="tab-pane fade" id="metrics" role="tabpanel" aria-labelledby="metrics-tab">
+                <h2>Real-time Metrics</h2>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%">75%</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="modals" role="tabpanel" aria-labelledby="modals-tab">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Launch Modal</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Modal body content goes here.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Sample Chart.js code
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
